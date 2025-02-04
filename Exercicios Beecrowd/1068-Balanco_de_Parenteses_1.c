@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
+//This algotithm simulates the use of stacks in C
 int main() {
     const int MAX = 1000;
     char expression[MAX];
