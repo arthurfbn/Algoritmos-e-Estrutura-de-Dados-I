@@ -1,6 +1,11 @@
 #include <stdio.h>
 
+<<<<<<< HEAD
 //The implentation of QuickSort's algorithm is based on the guide's book  of this disciplin 'Algoritmos em linguagem C' written by Paulo Feofiloff
+=======
+// The implentation of QuickSort's algorithm is based on the guide's book 
+// of this disciplin 'Algoritmos em linguagem C' written by Paulo Feofiloff
+>>>>>>> a0ec83f2f843e04e3b34570ce5c1cc3c318d83d5
 int Separa(int p, int r, int v[]) {
     int c, j, k, t;
     c = v[r]; 
