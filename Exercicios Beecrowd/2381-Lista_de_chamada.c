@@ -2,66 +2,79 @@
 #include <string.h>
 #include <stdlib.h>
 
-const int MAX_CHAR_LENGTH = 20;
+const int MAX_CHAR_LENGTH = 30;
 
-typedef struct cell {
-  char *name;
-  struct cell *next;
-}cell;
+typedef struct cel {
+    char *nome;
+    struct cel *nova;
+} cel;
 
-void printName(cell *lst, int index) {
-    cell *p = lst;
-    for (int i = 1; i < index; i++)
-        p = p->next;
-    printf("%s\n", p->name);
-}
+void insere(const char *v, cel **es, cel **et) {
+    cel *novaCel = (cel *)malloc(sizeof(cel));
+    novaCel->nome = (char*)malloc(MAX_CHAR_LENGTH * sizeof(char));
+    if (!novaCel) exit(1);
 
-void createCell(char *v, cell **es, cell **et) {
-    cell *newCell;
-    newCell = (cell*)malloc(sizeof(cell));
-    newCell->name = (char*)malloc(MAX_CHAR_LENGTH * sizeof(char));
-    strcpy(newCell->name, v);
-    newCell->next = NULL;
-    if (*et == NULL){
-        *et = *es;
-        *es = newCell;
-    }else{
-        (*et)->next = newCell;
-        *et = newCell;
+    strncpy(novaCel->nome, v, MAX_CHAR_LENGTH - 1);
+    novaCel->nome[MAX_CHAR_LENGTH - 1] = '\0';
+    novaCel->nova = NULL;
+
+    if (*es == NULL)
+        *es = *et = novaCel;
+    else {
+        (*et)->nova = novaCel;
+        *et = novaCel;
     }
 }
 
-void sortListItems(cell *lst) {
-    cell *p, *q;
+void ordenaLista(cel *lst) {
+    if (!lst) return;
+
+    cel *p, *q;
     char aux[MAX_CHAR_LENGTH];
-    for (p = lst; p != NULL; p = p->next) {
-        for (q = p->next; q != NULL; q = q->next) {
-            if (strcmp(p->name, q->name) > 0) {
-                strcpy(aux, p->name);
-                strcpy(p->name, q->name);
-                strcpy(q->name, aux);
+    for (p = lst; p != NULL; p = p->nova) {
+        for (q = p->nova; q != NULL; q = q->nova) {
+            if (strcmp(p->nome, q->nome) > 0) {
+                strncpy(aux, p->nome, MAX_CHAR_LENGTH);
+                strncpy(p->nome, q->nome, MAX_CHAR_LENGTH);
+                strncpy(q->nome, aux, MAX_CHAR_LENGTH);
             }
         }
     }
 }
 
+void printaNome(cel *lst, int index) {
+    cel *p = lst;
+    for (int i = 1; i < index; i++) {
+        if (!p) exit(1);
+        p = p->nova;
+    }
+    printf("%s\n", p->nome);
+}
+
+void liberaLista(cel *lst) {
+    cel *atual = lst;
+    while (atual) {
+        cel *prox = atual->nova;
+        free(atual);
+        atual = prox;
+    }
+}
+
 int main() {
-    char firstInput[MAX_CHAR_LENGTH];
-    cell *s, *t;
-    s = t = NULL;
+    int n, k;
+    scanf("%d %d", &n, &k);
 
-    fgets(firstInput, MAX_CHAR_LENGTH, stdin);
-    int n = strtol(strtok(firstInput, " "), NULL, 10);
-    int k = strtol(strtok(NULL, " "), NULL, 10);
+    cel *s = NULL, *t = NULL;
+    char nome[MAX_CHAR_LENGTH];
 
-    char *name = (char*)malloc(MAX_CHAR_LENGTH * sizeof(char));
     for (int i = 0; i < n; i++) {
-        fgets(name, MAX_CHAR_LENGTH, stdin);
-        name[strcspn(name, "\n")] = 0;
-        createCell(name, &s, &t);
+        scanf("%s", nome);
+        insere(nome, &s, &t);
     }
 
-    free(name);
-    sortListItems(s);
-    printName(s, k);
+    ordenaLista(s);
+    printaNome(s, k);
+    liberaLista(s);
+
+    return 0;
 }
