@@ -18,7 +18,7 @@ int sudoku(int mat[9][9]){
         aux_j += 3;                                     //Iterando blocos por coluna: bloco 1 (a00, a22); bloco 2 (a03, a25)...
         if ((c + 1) % 3 == 0){
             aux_i += 3;                                 // Mudando a linha do bloco 
-            aux_j = 0;                                  //No começo de cada nova linha do bloco, a coluna volta ao início
+            aux_j = 0;                                  //cel começo de cada nova linha do bloco, a coluna volta ao início
         }
     }
 

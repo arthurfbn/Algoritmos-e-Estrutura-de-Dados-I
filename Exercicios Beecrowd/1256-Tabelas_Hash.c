@@ -6,7 +6,7 @@ typedef struct cel {
     struct cel* prox;
 } cel;
 
-void inserir(cel* tabela[], int chave, int M) {
+void insere(cel* tabela[], int chave, int M) {
     int i = chave % M;
     cel* novaCel = (cel*)malloc(sizeof(cel));
     novaCel->chave = chave;
@@ -65,7 +65,7 @@ int main() {
         for (int i = 0; i < C; i++) {
             int chave;
             scanf("%d", &chave);
-            inserir(tabela, chave, M);
+            insere(tabela, chave, M);
         }
 
         imprimirTabela(tabela, M);

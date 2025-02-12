@@ -51,12 +51,12 @@ no* novoNo(int valor) {
     return no;
 }
 
-// Função para inserir um valor na árvore binária
-no* inserir(no *raiz, int valor) {
+// Função para insere um valor na árvore binária
+no* insere(no *raiz, int valor) {
     if (raiz == NULL) return novoNo(valor);
 
-    if (valor < raiz->valor) raiz->esq = inserir(raiz->esq, valor);
-    else                     raiz->dir = inserir(raiz->dir, valor);
+    if (valor < raiz->valor) raiz->esq = insere(raiz->esq, valor);
+    else                     raiz->dir = insere(raiz->dir, valor);
     return raiz;
 }
 
@@ -92,7 +92,7 @@ int main() {
         no *raiz = NULL;
         for (int i = 0; i < n; i++) {
             scanf("%d", &value);
-            raiz = inserir(raiz, value);
+            raiz = insere(raiz, value);
         }
 
         printf("Case %d:\n", c);
