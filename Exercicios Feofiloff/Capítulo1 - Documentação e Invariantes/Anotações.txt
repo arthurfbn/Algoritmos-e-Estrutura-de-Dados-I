@@ -1,0 +1,4 @@
+Uma invariante é uma relação entre os valores das variáveis que vale no início de cada iteração do processo iterativo
+No processo de iteração de um loop que calcula o elemento máximo x de um vetor v de tamanho j, antes de qualquer 
+comparação ou incremento entre as variáveis no laço de repetição, x há de ser um elemento máximo de de v[0.. j - 1]
+para ser considerado um invariante. Isso comprova a corretude do que se propõe a fazer a função. 

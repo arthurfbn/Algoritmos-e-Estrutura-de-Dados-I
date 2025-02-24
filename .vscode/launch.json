@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/arthu/OneDrive/Documentos/UNIFESP/2º semestre/AEDI/Algoritmos-e-Estrutura-de-Dados-I/Exercicios Feofiloff",
+      "program": "c:/Users/arthu/OneDrive/Documentos/UNIFESP/2º semestre/AEDI/Algoritmos-e-Estrutura-de-Dados-I/Exercicios Feofiloff/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
